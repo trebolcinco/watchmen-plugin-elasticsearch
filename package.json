@@ -18,7 +18,8 @@
   "license": "MIT",
   "homepage": "https://github.com/trebolcinco/watchmen-plugin-elasticsearch.git#readme",
   "dependencies": {
-    "@elastic/elasticsearch": "^7.6.1"
+    "@elastic/elasticsearch": "^7.6.1",
+    "moment": "^2.4.0"
   },
   "bugs": {
     "url": "https://github.com/trebolcinco/watchmen-plugin-elasticsearch.git/issues"

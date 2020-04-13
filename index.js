@@ -1,5 +1,5 @@
 
-
+var moment = require('moment')
 const { Client } = require('@elastic/elasticsearch')
 const es_host = process.env.WATCHMEN_ES_HOST || '127.0.0.1'
 const es_port = process.env.WATCHMEN_ES_PORT  || '9200'
@@ -28,7 +28,7 @@ async function sendData (service, metric, value) {
 
   if (metric != "serviceOk"){
 
-    console.log(`sending ${metric} for ${output.body.service} at ${output.body.timestamp.toString()} 2.`)
+    console.log(`sending ${metric} for ${output.body.service.name} at ${moment(output.body.timestamp).format("DD-MM-YYYY h:mm:ss")}.`)
     try{
       await client.index( output )
     }
