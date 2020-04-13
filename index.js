@@ -1,8 +1,10 @@
 
 
 const { Client } = require('@elastic/elasticsearch')
-var es_url = `http://${process.env.WATCHMEN_ES_HOST}:${process.env.WATCHMEN_ES_PORT}`
-console.log(es_url)
+const es_host = process.env.WATCHMEN_ES_HOST || '127.0.0.1'
+const es_port = process.env.WATCHMEN_ES_PORT  || '9200'
+const es_url = `http://${es_host}:${es_port}`
+const es_index = process.env.WATCHMEN_ES_INDEX || 'watchmen'
 const client = new Client({ node: es_url })
 const doSendEvent = false
 
@@ -14,19 +16,19 @@ const doSendEvent = false
  */
 async function sendData (service, metric, value) {
   output = {
-    index: 'watchmen',
+    index: es_index,
     // type: '_doc', // uncomment this line if you are using Elasticsearch ≤ 6
     body: {
       service: service,
       metric: metric,
       value: value,
-      when: new Date().getTime()
+      timestamp: new Date().getTime()
     }
   }
 
   if (metric != "serviceOk"){
 
-    console.log(output)
+    console.log(`sending ${metric} for ${output.body.service} at ${output.body.when.toString()}.`)
     try{
       await client.index( output )
     }
@@ -35,10 +37,10 @@ async function sendData (service, metric, value) {
       console.log(e)
     }
   }
-  else
-  {
-    console.log('no save, ok = '+metric)
-  }
+  // else
+  // {
+  //   console.log('no save, ok = '+metric)
+  // }
 }
 
 /**
@@ -55,7 +57,7 @@ async function sendEvent (service, body) {
     body.tags += ' ' + tag + ' ' + serviceName + '_' + tag;
   });
   await client.index({
-    index: 'watchmen',
+    index: es_index,
     // type: '_doc', // uncomment this line if you are using Elasticsearch ≤ 6
     body: {
       service: serviceName,
