@@ -28,7 +28,7 @@ async function sendData (service, metric, value) {
 
   if (metric != "serviceOk"){
 
-    console.log(`sending ${metric} for ${output.body.service} at ${output.body.when.toString()}.`)
+    console.log(`sending ${metric} for ${output.body.service} at ${output.body.timestamp.toString()} 2.`)
     try{
       await client.index( output )
     }
