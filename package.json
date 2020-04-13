@@ -1,0 +1,27 @@
+{
+  "name": "watchmen-plugin-es",
+  "version": "0.1.0",
+  "description": "ES source plugin for Watchmen",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alex-Sh/watchmen-plugin-graphite.git"
+  },
+  "keywords": [
+    "watchmen",
+    "elasticsearch"
+  ],
+  "author": "Mike Taylor",
+  "license": "MIT",
+  "homepage": "https://github.com/Alex-Sh/watchmen-plugin-graphite#readme",
+  "dependencies": {
+    "@elastic/elasticsearch": "^7.6.1"
+  },
+  "bugs": {
+    "url": "https://github.com/Alex-Sh/watchmen-plugin-graphite/issues"
+  },
+  "devDependencies": {}
+}
