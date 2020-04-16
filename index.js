@@ -19,6 +19,7 @@ async function sendData (service, metric, value) {
     index: es_index,
     // type: '_doc', // uncomment this line if you are using Elasticsearch ≤ 6
     body: {
+      serviceName: service.name,
       service: service,
       metric: metric,
       value: value,
