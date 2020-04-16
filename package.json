@@ -1,6 +1,6 @@
 {
   "name": "watchmen-plugin-elasticsearch",
-  "version": "0.1.5",
+  "version": "0.1.8",
   "description": "ES source plugin for Watchmen",
   "main": "index.js",
   "scripts": {
@@ -19,6 +19,7 @@
   "homepage": "https://github.com/trebolcinco/watchmen-plugin-elasticsearch.git#readme",
   "dependencies": {
     "@elastic/elasticsearch": "^7.6.1",
+    "math": "0.0.3",
     "moment": "^2.4.0"
   },
   "bugs": {
