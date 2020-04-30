@@ -29,7 +29,6 @@ async function sendData (service, metric, value) {
 
   if (metric != "serviceOk"){
 
-    //console.log(`sending ${metric} for ${output.body.service.name} at ${moment(output.body.timestamp).format("DD-MM-YYYY h:mm:ss")}.`)
     try{
       await client.index( output )
     }
@@ -38,10 +37,7 @@ async function sendData (service, metric, value) {
       console.log(e)
     }
   }
-  // else
-  // {
-  //   console.log('no save, ok = '+metric)
-  // }nodehj
+
 }
 
 /**

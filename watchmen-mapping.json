@@ -1,0 +1,149 @@
+{
+  "aliases": {
+    "watchmen":{
+      "is_write_index": true
+    }
+  },
+  "settings": {
+    "index": {
+      "sort.field":"timestamp",
+      "sort.order":"desc"
+
+    }
+  },
+  "mappings": {
+      "properties": {
+        "metric": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "service": {
+          "properties": {
+            "created": {
+              "type": "long"
+            },
+            "failureInterval": {
+              "type": "long"
+            },
+            "failuresToBeOutage": {
+              "type": "long"
+            },
+            "id": {
+              "type": "text",
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+                }
+              }
+            },
+            "interval": {
+              "type": "long"
+            },
+            "name": {
+              "type": "text",
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+                }
+              }
+            },
+            "pingService": {
+              "type": "object"
+            },
+            "pingServiceName": {
+              "type": "text",
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+                }
+              }
+            },
+            "pingServiceOptions": {
+              "properties": {
+                "http-head": {
+                  "properties": {
+                    "statusCode": {
+                      "properties": {
+                        "descr": {
+                          "type": "text",
+                          "fields": {
+                            "keyword": {
+                              "type": "keyword",
+                              "ignore_above": 256
+                            }
+                          }
+                        },
+                        "required": {
+                          "type": "boolean"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "port": {
+              "type": "long"
+            },
+            "running": {
+              "type": "boolean"
+            },
+            "timeout": {
+              "type": "long"
+            },
+            "timeoutId": {
+              "properties": {
+                "_called": {
+                  "type": "boolean"
+                },
+                "_destroyed": {
+                  "type": "boolean"
+                },
+                "_idleStart": {
+                  "type": "long"
+                },
+                "_idleTimeout": {
+                  "type": "long"
+                }
+              }
+            },
+            "url": {
+              "type": "text",
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+                }
+              }
+            },
+            "warningThreshold": {
+              "type": "long"
+            }
+          }
+        },
+        "serviceName": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "value": {
+          "type": "long"
+        },
+        "timestamp": {
+          "type": "date"
+        }
+      }
+    }
+ }
