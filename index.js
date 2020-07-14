@@ -5,8 +5,9 @@ const es_host = process.env.WATCHMEN_ES_HOST || '127.0.0.1'
 const es_port = process.env.WATCHMEN_ES_PORT  || '9200'
 const es_url = `http://${es_host}:${es_port}`
 const es_index = process.env.WATCHMEN_ES_INDEX || 'watchmen'
+const es_event_index = process.env.WATCHMEN_ES_EVENT_INDEX || "watchevent"
 const client = new Client({ node: es_url })
-const doSendEvent = true
+const doSendEvent = ((process.env.WATCHMEN_ES_SEND_EVENT || "false") == "true")
 
 /**
  * Filter service name before sending
@@ -63,7 +64,7 @@ async function sendEvent (service, body) {
     body.tags += ' ' + tag + ' ' + serviceName + '_' + tag;
   });
   await client.index({
-    index: es_index,
+    index: es_event_index,
     // type: '_doc', // uncomment this line if you are using Elasticsearch ≤ 6
     body: {
       service: serviceName,
