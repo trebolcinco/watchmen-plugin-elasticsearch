@@ -6,7 +6,15 @@ const es_port = process.env.WATCHMEN_ES_PORT  || '9200'
 const es_url = `http://${es_host}:${es_port}`
 const es_index = process.env.WATCHMEN_ES_INDEX || 'watchmen'
 const client = new Client({ node: es_url })
-const doSendEvent = false
+const doSendEvent = true
+
+/**
+ * Filter service name before sending
+ * @param {String} name
+ */
+function filterName (name) {
+  return name.replace(/http(s)?|:|\/\//g, '').replace(/\/|\./g, '_');
+}
 
 /**
  * Send data to Graphite
@@ -31,6 +39,7 @@ async function sendData (service, metric, value) {
 
     try{
       await client.index( output )
+      // console.log("Sent to Elastic Search -> %output",output)
     }
     catch (e)
     {
